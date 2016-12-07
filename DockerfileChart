@@ -1,0 +1,12 @@
+FROM alpine:3.4
+
+RUN apk --update add ca-certificates
+RUN mkdir /usr/stock-service-chart
+COPY . /usr/stock-service-chart
+WORKDIR /usr/stock-service-chart
+RUN ./helm_installer.sh
+
+WORKDIR /usr/stock-service-chart/charts/stock
+RUN helm lint
+RUN helm package --save=false .
+CMD helm serve --address 0.0.0.0:8878 --repo-path .

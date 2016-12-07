@@ -1,0 +1,13 @@
+Name: stock
+ServiceType: ClusterIP
+ServicePort: 80
+ContainerPort: 9292
+Component: "stock"
+Replicas: 3
+Image: "enxebre/stock"
+ImageTag: "v1"
+IngressDomain: "test"
+ImagePullPolicy: "Always"
+Cpu: "9m"
+Memory: "64Mi"
+Version: 0
