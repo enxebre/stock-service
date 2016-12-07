@@ -26,7 +26,7 @@ module Stock
     end
 
     get '/t-shirt' do
-      #sleep 2
+      sleep 2
       if (tshirt_list = TShirtRepository.find_all_t_shirts)
         content_type :json
         tshirt_list.to_json

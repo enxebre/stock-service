@@ -11,17 +11,17 @@ podTemplate(label: 'stock-service-builder', containers: [
         
         container('docker') {
             stage 'Build Service'
-            sh 'docker build -t enxebre/stock:v1 .'
+            sh 'docker build -t enxebre/stock:v2 .'
             
             stage 'Push Service'
             sh "docker login -u enxebre -p ${dockerHubPass}"
-            sh 'docker push enxebre/stock:v1'
+            sh 'docker push enxebre/stock:v2'
             
             stage 'Build Self Contained Helm Repo'
-            sh 'docker build -f DockerfileChart -t enxebre/stock-service-chart:v1 .'
+            sh 'docker build -f DockerfileChart -t enxebre/stock-service-chart:v2 .'
             
             stage 'Push Self Contained Helm Repo'
-            sh 'docker push enxebre/stock-service-chart:v1'
+            sh 'docker push enxebre/stock-service-chart:v2'
         }
     }
 }
